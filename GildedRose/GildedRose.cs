@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+
+
 namespace GildedRoseNS {
     public class GildedRose {
         public IList<Item> Items;

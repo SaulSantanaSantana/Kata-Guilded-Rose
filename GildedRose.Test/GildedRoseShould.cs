@@ -4,6 +4,8 @@ using FluentAssertions;
 using GildedRoseNS;
 using NUnit.Framework;
 
+
+
 namespace KataGildedRose.Tests
 {
     public class GildedRoseShould
