@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GildedRoseNS;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace GildedRoseNS {
@@ -7,81 +8,29 @@ namespace GildedRoseNS {
 
         public IList<Item> Items;
 
-        public GildedRose(IList<Item> items) {
+        public Dictionary<string, ItemtoSell> itemTypes = new Dictionary<string, ItemtoSell>()
+        {
+            {"Aged Brie", new BrieItem() },
+            { "Sulfuras, Hand of Ragnaros", new LegendaryItem()},
+            {"Backstage passes to a TAFKAL80ETC concert", new BackstageItem()},
+            { "Conjured", new ConjuredItem()},
+            { "Regular", new RegularItem()}
+        };
+
+        public GildedRose(IList<Item> items){
             Items = items;
         }
 
         public void UpdateQuality(){
-
-            foreach (var item in Items) {
-                if (item.Name.Equals("Sulfuras, Hand of Ragnaros")) {
-                    //Sulfuras UWU
-                    continue;
-                }else if (item.Quality > 0 && item.Quality < 50) {
-                    switch (item.Name) {
-
-                        case "Aged Brie":
-                            brieQuialityChange(item);
-                            break;
-
-                        case "Backstage passes to a TAFKAL80ETC concert":
-                            backstageQualityChange(item);
-                            break;
-
-                        case "Conjured":
-                            conjuredQualityChange(item);
-                            break;
-
-                        default:
-                            generalQualityChange(item);
-                            break;
-                    }
+            foreach(var item in Items)
+            {
+                if (itemTypes.ContainsKey(item.Name))
+                {
+                    itemTypes[item.Name].changeQuality(item);
                 }
-
-                item.SellIn--;
-            }
-        }
-
-        private void generalQualityChange(Item item) {
-            if (item.SellIn == 0) {
-                item.Quality = item.Quality - 2 ;
-            }
-            else{
-                item.Quality--;
-            }
-
-        }
-
-        private void brieQuialityChange(Item item){
-            if (item.SellIn == 0) {
-                item.Quality = item.Quality + 2;
-            }
-            else {
-                item.Quality++;
-            }
-        }
-
-        private void backstageQualityChange(Item item){
-            if (item.SellIn == 0){
-                item.Quality = 0;
-            }
-            else if (item.SellIn <= 5) {
-                item.Quality = item.Quality + 3;
-            }
-            else if (item.SellIn <= 10){
-                item.Quality = item.Quality + 2;
-            }
-            else {
-                item.Quality++;
-            }
-        }
-
-        private void conjuredQualityChange(Item item){
-            if (item.SellIn == 0){
-                item.Quality = item.Quality - 4;
-            }
-            else{
-                item.Quality = item.Quality - 2;
+                else {
+                    itemTypes["Regular"].changeQuality(item);
+                }
             }
         }
     }
