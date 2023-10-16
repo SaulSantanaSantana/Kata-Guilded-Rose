@@ -125,7 +125,7 @@ namespace GildedRoseNS
                 }
                 else
                 {
-                    item.Quality = item.Quality - 2;
+                    item.Quality = item.Quality - 4;
                 }
             }
 
