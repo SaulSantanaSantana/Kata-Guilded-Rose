@@ -178,5 +178,17 @@ namespace KataGildedRose.Tests
             Items.First().SellIn.Should().Be(-1);
             Items.First().Quality.Should().Be(0);
         }
+
+        [Test]
+        public void drop_quality_by_two_everyday_in_elixir()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Mystical Elixir", SellIn = 2, Quality = 4 } };
+            var app = new GildedRose(Items);
+
+            app.UpdateQuality();
+
+            Items.First().SellIn.Should().Be(1);
+            Items.First().Quality.Should().Be(2);
+        }
     }
 }
