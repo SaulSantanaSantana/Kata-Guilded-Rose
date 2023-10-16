@@ -33,6 +33,11 @@ We have recently signed a supplier of conjured items. This requires an update to
 
 	- "Conjured" items degrade in Quality twice as fast as normal items
 
+ and Mystical Elixir;
+    	- Mystical Elixir degrades in Quality by 2 units every day.
+	-If the SellIn has passed, the Mystical Elixir degrades in Quality by 4 units every day.
+	-On the 3rd day from its SellIn value (por simplificar, cuando el valor de sellIn sea igual a 3) , the "Mystical Elixir" increases in Quality by 10 units (this signifies the two peaks when the elixir is the most potent).
+
 Feel free to make any changes to the UpdateQuality method and add any new code as long as everything still works correctly. However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn't believe in shared code ownership (you can make the UpdateQuality method and Items property static if you like, we'll cover for you).
 
 Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
