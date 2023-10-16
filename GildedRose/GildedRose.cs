@@ -14,6 +14,7 @@ namespace GildedRoseNS {
             { "Sulfuras, Hand of Ragnaros", new LegendaryItem()},
             {"Backstage passes to a TAFKAL80ETC concert", new BackstageItem()},
             { "Conjured", new ConjuredItem()},
+            { "Mystical Elixir", new ElixirItem()},
             { "Regular", new RegularItem()}
         };
 

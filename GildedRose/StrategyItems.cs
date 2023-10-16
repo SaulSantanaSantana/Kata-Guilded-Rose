@@ -102,6 +102,37 @@ namespace GildedRoseNS
         public override void changeQuality(Item item){;}
     }
 
+    public class ElixirItem : ItemtoSell
+    {
+        public override void changeQuality(Item item) {
+
+            if (item.Quality > 0 && item.Quality <= 50) {
+                
+                if (item.SellIn == 3)
+                {
+                    if (item.Quality <= 40)
+                    {
+                        item.Quality += 10;
+                    }
+                    else {
+                        item.Quality = 50;
+                    }
+                    
+                }
+                else if (item.SellIn > 0)
+                {
+                    item.Quality = item.Quality - 2;
+                }
+                else
+                {
+                    item.Quality = item.Quality - 2;
+                }
+            }
+
+            item.SellIn--;
+        }
+    }
+
 
     public abstract class ItemtoSell : Item {
         public abstract void changeQuality(Item item);
